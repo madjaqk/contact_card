@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Contact Card</title>
+		<meta charset="UTF-8">
+		<style type="text/css">
+			body{
+				width: 1000px;
+			}
+
+			textarea{
+				margin-bottom: 12px;
+			}
+
+			div{
+				width: 450px;
+				display: inline-block;
+				vertical-align: top;
+			}
+
+			table{
+				margin: 0px 50px;
+			}
+
+			td{
+				width: 300px;
+				height: 120px;
+				border: 2px solid black;
+				margin: 12px;
+				text-align: center;
+			}
+
+		</style>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$("#add").click(function() {
+					var firstname = $("[name=firstname]").val();
+					var lastname = $("[name=lastname]").val();
+					var description = $("[name=description]").val();
+
+					$("table.card").append("<tr><td description="+description+"><h1>"+firstname+" " +lastname+"</h1> Click for description!</td></tr>")
+				});
+
+				$(document).on("click","td", function(){
+					var hold = $(this).html();
+					$(this).html($(this).attr("description"))
+					$(this).attr("description", hold);					
+				});
+
+			});
+		</script>
+	</head>
+	<body>
+		<div class="info">
+			<form>
+				<p>First name: <input type="text" name="firstname"></p>
+				<p>Last name: <input type="text" name="lastname"></p>
+				<p>Description:</p> 
+				<textarea rows="4" cols="50" name="description">Enter description...</textarea>
+			</form>
+			<button id="add">Add User</button>
+		</div>
+		<div class="cards">
+			<table class="card">
+				<tr>
+					<td description="<p>Codingdojo's fearless leader.  Master of instruction.</p>">
+						<h1>Michael Choi</h1>
+						Click for description!
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
